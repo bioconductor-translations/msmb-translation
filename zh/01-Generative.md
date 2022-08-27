@@ -1,28 +1,28 @@
-# Generative Models for Discrete Data
+# 离散数据的生成模型
 
     ![ ](https://www.huber.embl.de/msmb/images/Pile_ou_face.png)
 
-In molecular biology, many situations involve counting events: how many codons use a certain spelling, how many reads of DNA match a reference, how many CG digrams are observed in a DNA sequence. These counts give us *discrete* variables, as opposed to quantities such as mass and intensity that are measured on *continuous* scales.
+分子生物学中，许多情况涉及计数事件：有多少密码子（codon）使用某种拼写， 有多少DNA reads的数量与参考基因组（reference）相匹配，在DNA序列中观察到多少个CG 二聚体。 这些计数（counts）是*离散* 变量， 不同于质量和强度等*连续* 变量。
 
-If we know the rules that the mechanisms under study follow, even if the outcomes are random, we can generate the probabilities of any events we are interested in by computations and standard probability laws. This is a *top-down* approach based on deduction and our knowledge of how to manipulate probabilities. In Chapter @ref(Chap-Models), you will see how to combine this with data-driven (*bottom-up*) statistical modeling.
+如果我们知道正在研究的机制遵循的规则，即使结果是随机的， 我们可以通过计算机和一般概率论生成任何我们感兴趣事件的概率 这是一个基于演绎以及我们关于操作概率的知识的*自上而下*的方法。 在第 @ref章(Chap-Models) 中，你会看到如何将其与数据驱动的(*自下而上*) 的统计模型结合起来。
 
-## Goals for this chapter
+## 本章的目标
 
-In this chapter we will:
+在本章中，我们将：
 
--   Learn how to obtain the probabilities of all possible outcomes from a given model and see how we can compare the theoretical frequencies with those observed in real data.
+-   学习如何从给定模型中获取所有可能结果的概率，并看看我们如何比较理论概率和实际数据中观察到的频率。
 
--   Explore a complete example of how to use the Poisson distribution to analyse data on epitope detection.
+-   探索如何使用泊松分布的来分析表位识别（epitope detection）数据。
 
--   See how we can experiment with the most useful generative models for discrete data: Poisson, binomial, multinomial.
+-   看看我们如何试验最有用的离散数据的生成模型：泊松、二项分布、多项分布。
 
--   Use the **R** functions for computing probabilities and counting rare events.
+-   使用 **R** 函数计算概率和计数稀有事件。
 
--   Generate random numbers from specified distributions.
+-   从指定的分布生成随机数字。
 
-## A real example
+## 一个真实的示例
 
-Let’s dive into a real example, where we know the probability model for the process. We are told that mutations along the genome of HIV (Human Immunodeficiency Virus) occur at random with a rate of 5 × 10<sup>−4</sup> per nucleotide per replication cycle. This means that after one cycle, the number of mutations in a genome of about 10<sup>4</sup> = 10, 000 nucleotides will follow a **Poisson** distribution[1] with rate 5. What does that tell us? This probability model predicts that the number of mutations over one replication cycle will be close to 5, and that the variability of this estimate is $\sqrt{5}$ (the standard error). We now have baseline reference values for both the number of mutations we expect to see in a typical HIV strain and its variability.
+让我们从一个真实例子开始。我们已知一个随机过程的概率模型 已知HIV（人类免疫缺陷病毒）基因组的突变是随机发生的，其速度为5 × 10<sup>-4</sup>个核苷酸 每复制周期。 这意味着经过一个复制周期后，对于一个约有10<sup>4</sup>= 10 000 碱基的基因组来说，突变碱基数服从比率为5的**泊松**分布[1]。 这说明了什么？ 这个概率模型预测了在一个复制周期内的突变数将接近5，而且此估计值的变异性为$\sqrt{5}$(标准差)。 We now have baseline reference values for both the number of mutations we expect to see in a typical HIV strain and its variability.
 
 In fact, we can deduce even more detailed information. If we want to know how often 3 mutations could occur under the Poisson(5) model, we can use an R function to generate the probability of seeing *x* = 3 events, taking the value of the **rate parameter** of the Poisson distribution, called lambda (*λ*
 
