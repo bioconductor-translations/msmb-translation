@@ -1,4 +1,4 @@
-# Introduction
+# 简介
 
 The two instances of *modern* in the title of this book reflect the two major recent revolutions in biological data analyses:
 
