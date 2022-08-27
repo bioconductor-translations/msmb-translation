@@ -12,7 +12,7 @@ The aim of this book is to enable scientists working in biological research to q
 
 By no means this book will replace systematic training in underlying theory: probability, linear algebra, computer science, databases, multivariate statistics. Such training takes many semesters of coursework. Perhaps the book will whet your appetite to engage more deeply with one of these fields.
 
-## The challenge: heterogeneity
+## 挑战：异质性
 
 Any biological system or organism is composed of tens of thousands of components, which can be in different states and interact in multiple ways. Modern biology aims to understand such systems by acquiring comprehensive –and this means high-dimensional– data in their temporal and spatial context, with multiple covariates and interactions. Dealing with this complexity will be our primary challenge. This includes real, biological complexity as well as the complexities and heterogeneities of the data we are able to acquire with our always imperfect instruments.
 
@@ -22,7 +22,7 @@ Biological data come in all sorts of shapes: nucleic acid and protein sequences,
 
 It is this heterogeneity that motivates our choice of R and Bioconductor as the computational platform for this book – some more on this below.
 
-## What’s in this book?
+## 这本书里面有什么？
 
 ![The hypothesis testing paradigm recommended by R.A. Fisher starts with
 the formulation of a null hypothesis and the design of an experiment
